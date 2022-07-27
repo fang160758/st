@@ -30,7 +30,7 @@ st: $(OBJ)
 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
 
 clean:
-	rm -f st $(OBJ) st-$(VERSION).tar.gz
+	rm -f st $(OBJ) st-$(VERSION).tar.gz config.h
 
 dist: clean
 	mkdir -p st-$(VERSION)
@@ -38,7 +38,7 @@ dist: clean
 		config.def.h st.info st.1 arg.h st.h win.h $(SRC)\
 		st-$(VERSION)
 	tar -cf - st-$(VERSION) | gzip > st-$(VERSION).tar.gz
-	rm -rf st-$(VERSION) config.h
+	rm -rf st-$(VERSION) 
 
 install: st
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
