@@ -1,14 +1,29 @@
 --- x.c
 +++ x.c
-@@ -1111,10 +1123,10 @@ void
- xinit(int cols, int rows)
- {
- 	XGCValues gcvalues;
--	Cursor cursor;
- 	Window parent;
- 	pid_t thispid = getpid();
- 	XColor xmousefg, xmousebg;
-+	Pixmap blankpm;
+@@ -329,6 +330,17 @@ ttysend(const Arg *arg)
+ 	ttywrite(arg->s, strlen(arg->s), 1);
+ }
  
- 	if (!(xw.dpy = XOpenDisplay(NULL)))
- 		die("can't open display\n");
++void
++cyclefonts(const Arg *arg)
++{
++	currentfont++;
++	currentfont %= (sizeof fonts / sizeof fonts[0]);
++	usedfont = fonts[currentfont];
++	Arg larg;
++	larg.f = usedfontsize;
++	zoomabs(&larg);
++}
++
+ int
+ evcol(XEvent *e)
+ {
+@@ -1116,7 +1128,7 @@ xinit(int cols, int rows)
+ 	if (!FcInit())
+ 		die("could not init fontconfig.\n");
+ 
+-	usedfont = (opt_font == NULL)? font : opt_font;
++	usedfont = (opt_font == NULL)? fonts[currentfont] : opt_font;
+ 	xloadfonts(usedfont, 0);
+ 
+ 	/* colors */
