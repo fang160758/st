@@ -1,3 +1,4 @@
-*.reg
-*.orig
+*.rej
+*.oreg
+*.[oa]
 patches
