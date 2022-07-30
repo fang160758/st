@@ -168,6 +168,7 @@ static uint forcemousemod = ShiftMask;
  */
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask | ShiftMask)
+#define CONTMOD (ControlMask | Mod1Mask)
 static MouseShortcut mshortcuts[] = {
     /* mask                 button   function        argument       release */
     {MODKEY, Button4, kscrollup, {.i = 1}},
@@ -189,9 +190,9 @@ static Shortcut shortcuts[] = {
     {ControlMask, XK_Print, toggleprinter, {.i = 0}},
     {ShiftMask, XK_Print, printscreen, {.i = 0}},
     {XK_ANY_MOD, XK_Print, printsel, {.i = 0}},
-    {ControlMask, XK_k, zoom, {.f = +1}},
-    {ControlMask, XK_j, zoom, {.f = -1}},
-    {ControlMask, XK_r, zoomreset, {.f = 0}},
+    {CONTMOD, XK_k, zoom, {.f = +1}},
+    {CONTMOD, XK_n, zoom, {.f = -1}},
+    {CONTMOD, XK_r, zoomreset, {.f = 0}},
     {TERMMOD, XK_C, clipcopy, {.i = 0}},
     {TERMMOD, XK_V, clippaste, {.i = 0}},
     {TERMMOD, XK_Y, selpaste, {.i = 0}},
